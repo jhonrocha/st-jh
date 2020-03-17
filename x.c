@@ -72,6 +72,7 @@ static void selpaste(const Arg *);
 static void zoom(const Arg *);
 static void zoomabs(const Arg *);
 static void zoomreset(const Arg *);
+static void togglealpha(const Arg *);
 static void ttysend(const Arg *);
 
 /* config.h for applying patches and the configuration. */
@@ -334,6 +335,16 @@ zoomreset(const Arg *arg)
 		larg.f = defaultfontsize;
 		zoomabs(&larg);
 	}
+}
+
+void
+togglealpha(const Arg *arg)
+{
+  fprintf(stderr, "Alpha toggle\n");
+  if (alpha < 1.0) alpha = 1.0;
+  else alpha = initalpha;
+  xloadcols();
+	redraw();
 }
 
 void
